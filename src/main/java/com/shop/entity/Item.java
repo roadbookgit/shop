@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import com.shop.exception.OutOfStockException;
 
 @Entity  //①
 @Table(name="item")  //①
@@ -46,4 +47,18 @@ public class Item extends BaseEntity{
         this.itemDetail = itemFormDto.getItemDetail();
         this.itemSellStatus = itemFormDto.getItemSellStatus();
     }
+
+    public void removeStock(int stockNumber){
+        int restStock = this.stockNumber - stockNumber;  //①
+        if(restStock<0){
+            throw new OutOfStockException("상품의 재고가 부족 합니다. (현재 재고 수량: " + this.stockNumber + ")");  //②
+        }
+        this.stockNumber = restStock;  //③
+    }
+
+    public void addStock(int stockNumber){  //①
+        this.stockNumber += stockNumber;
+    }
+
+
 }

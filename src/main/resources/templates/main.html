@@ -31,21 +31,21 @@
 
 <div layout:fragment="content">
 
-    <div id="carouselControls" class="carousel slide margin" data-ride="carousel">  //①
+    <div id="carouselControls" class="carousel slide margin" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active item">
-                <img class="d-block w-100" src="https://user-images.githubusercontent.com/13268420/101316307-9c68c700-389f-11eb-9130-5941c7952c02.png" alt="First slide">  //②
+                <img class="d-block w-100" src="https://user-images.githubusercontent.com/13268420/101316307-9c68c700-389f-11eb-9130-5941c7952c02.png" alt="First slide">
             </div>
         </div>
     </div>
 
-    <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}"> //③
+    <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
     <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
-        <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>  //④
+        <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>
     </div>
 
     <div class="row">
-        <th:block th:each="item, status: ${items.getContent()}">  //⑤
+        <th:block th:each="item, status: ${items.getContent()}">
             <div class="col-md-4 margin">
                 <div class="card">
                     <a th:href="'/item/' +${item.id}" class="text-dark">
